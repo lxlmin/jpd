@@ -4,7 +4,7 @@ import home from '@/views/HomePage'
 const routes = [
     {
         path:'/',
-        redirect:'/pre'
+        redirect:'/ind'
     },
    
     {

@@ -1,17 +1,20 @@
 <template>
-    <div class="relative h-[130vh] pb-[12vw] bg-[#acacac]">
+    <div class="relative h-[100vh] pb-[12vw] bg-[#acacac]">
         <div class="absolute z-[3] flex flex-wrap h-[100%] pb-[7.5vw]">
             <!-- 头部 -->
             <div class="h-[15vw] w-[100vw] flex items-center px-[4vw] justify-between">
-                <div>
-                    <Icon icon="ri:arrow-up-s-line" color="white" :rotate="2" :style="{fontSize:'30px'}"/>
-                </div>
+                <router-link to="/pre">
+                    <div>
+                       <Icon icon="ri:arrow-up-s-line" color="white" :rotate="2" :style="{fontSize:'30px'}"/>
+                    </div>
+                </router-link>
+                
                 <div class="text-center w-[60vw]">
-                    <p class="h-[5vw] text-[4vw] text-[#000] line-clamp-1">
+                    <p class="h-[5vw] text-[4vw] text-[#fff] line-clamp-1">
                         <!-- 谁家 -->
                         {{mixin_player.currentTrackDetail?.name}}
                     </p>
-                    <p class="text-[2.8vw] text-[#666666] mt-[2vw] font-[400]">
+                    <p class="text-[2.8vw] text-[#e0dbdb] mt-[2vw] font-[400]">
                         <!-- 池鱼 -->
                         {{ mixin_player.currentTrackDetail?.ar?.map(({ name }) => name).join("/")}}
                         <span class="px-[1.6vw] py-[0.8vw] text-[#D8DBDB] text-[2vw] rounded-[8px] bg-[#84868B] ml-[1vw]">
@@ -22,7 +25,7 @@
                 <Icon icon="solar:share-linear" color="white" :style="{fontSize:'30px'}"/>
             </div>
             <!-- 歌碟 -->
-            <div  class="relative top-[2%] w-[100vw] h-[120vw] ">
+            <div  class="relative top-[1%] w-[100vw] h-[120vw] ">
                 <div @click="move"
                     class="absolute top-[10%] left-[50%] translate-x-[-50%] z-[10] rotated w-[30vw] h-[40vw]"
                     style="transform: rotate(-10deg);"
@@ -51,7 +54,7 @@
             </div>
 
             <!-- 功能 -->
-            <div class="w-[100vw] mt-[1vw] flex justify-evenly items-center">
+            <div class="w-[100vw] flex justify-evenly items-center">
                 <div>
                     <Icon icon="ph:heart-bold" color="white" :style="{fontSize:'20px'}"/>
                 </div>
@@ -75,9 +78,8 @@
             <div class="h-[12.3vw] flex w-[100vw] items-center justify-evenly">
                 <Icon icon="cil:loop" color="white" :style="{fontSize:'20px'}"/>
                 <Icon icon="fluent:previous-20-filled" color="white" :style="{fontSize:'20px'}"/>
-                <div></div>
+              
             <div class="w-[12vw] h-[12vw] rounded-[50%] bg-[#fff] flex items-center justify-center">
-                <!-- @click="mixin_player.replaceTracks($route.query.id)" -->
                 <span @click="mixin_player.toggle()">
                   <Icon 
                   :icon="mixin_player.playing ? 'ic:sharp-pause' : 'ph:play-fill'"
@@ -85,10 +87,9 @@
                 </span> 
             </div> 
             <Icon icon="fluent:previous-20-filled" color="white" :rotate="2" :style="{fontSize:'20px'}"/>     
-            <!-- <Icon icon="fontisto:play-list" color="white" :style="{fontSize:'20px'}"/> -->
             <div class="w-[12vw]">
-                <van-cell  @click="showPopup">
-                    <Icon icon="fontisto:play-list" class="text-[5vw] text-[#3b4152]"/>
+                <van-cell  @click="showPopup" :style="{ background:'transparent'}">
+                    <Icon icon="fontisto:play-list" class="text-[5vw] text-[#ffffff]"/>
                 </van-cell>
             </div>
             <van-popup 
