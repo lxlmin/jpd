@@ -15,6 +15,9 @@ export default {
             playing: false,
             currentRate: 0,
             musiclist:[],
+            musicName:'',
+            author:'',
+            imgUrl:'',
         };
     },
     components:{
@@ -37,6 +40,13 @@ export default {
             }
             this.playing = !this.playing;
         },
+
+        music(name,zuojia,url){
+          this.musicName = name; 
+          this.author = zuojia;
+          this.imgUrl = url;
+            // console.log(this.musicName);
+        }
     },
     
     async created() {
@@ -45,9 +55,10 @@ export default {
         });
         if (!err) this.musiclist = res.data.playlist.tracks;
         console.log('musiclist',this.musiclist);
+        this.$store.state.songcont = this.musiclist
     },
     computed: {
-        ...mapState(['songId']) 
+        ...mapState(['songcont']) 
         },
         player(){
             return player
@@ -81,12 +92,20 @@ export default {
               <img src="https://admirable-jalebi-ce44af.netlify.app/static/d7e4e3a244701ee85fecb5d4f6b5bd57.png" alt="" class="absolute top-0 left-0 z-[1]">
               <img :src="mixin_player.currentTrackDetail?.al?.picUrl" alt="" class="w-[7vw] h-[7vw] rounded-[50%]">
           </div>
+          <router-link to="/ind">
           <div class="text-[3vw] w-[60vw] text-ellipsis overflow-hidden whitespace-nowrap ml-[2vw]">
-              <span class="text-[#3E485E]">{{mixin_player.currentTrackDetail?.name}}</span>
-              <span class="text-[#7B8591]">-{{ mixin_player.currentTrackDetail?.ar?.map(({ name }) => name).join("/")}}</span>
+              <span class="text-[#3E485E]">
+                <!-- {{musicName}} -->
+                {{mixin_player.currentTrackDetail?.name}}
+                </span>
+              <span class="text-[#7B8591]">-
+                <!-- {{author}} -->
+                {{ mixin_player.currentTrackDetail?.ar?.map(({ name }) => name).join("/")}}
+              </span>
           </div>
+          </router-link>
       </div>
-      <div @click="play" class="w-[12.6vw]  pr-[4vw] h-[5.6vw] relative ml-[-6.2vw] overflow-hidden bg-red-400">
+      <div @click="play" class="w-[12.6vw]  pr-[4vw] h-[5.6vw] relative ml-[-6.2vw] overflow-hidden">
           <van-circle 
                 :value="mixin_player.progrees*100" 
                 :rate="0" 
@@ -102,6 +121,7 @@ export default {
               </span> 
           </van-circle>
       </div>
+
       <div>
           <van-cell class="bg-[#F9F9FA] color-[#F9F9FA]" @click="showPopup">
               <Icon icon="fontisto:play-list" class="text-[5vw] text-[#3b4152]"/>
@@ -127,19 +147,24 @@ export default {
                       </div>
                   </div>
                   <div>
-                      <div v-for="item in musiclist" :key="item.id" class="flex justify-between items-center h-[14vw]">
-                          <div class="flex items-center bg-orange-400"  @click="mixin_player.replaceTracks(item.id)">
+                     <!--  -->
+                      <div v-for="(item,index) in musiclist" :key="item.id" class="flex justify-between items-center h-[14vw]">
+                          <div class="flex items-center"  
+                          @click="music(item.name,item.ar[0].name,item.al.picUrl)"
+                          >
                               <div class="w-[4vw] text-[#bfbfbf] text-[3vw] text-center mr-[3.52vw] flex items-center justify-center">
                                   <img src="https://admirable-jalebi-ce44af.netlify.app/static/wave.gif" class="red-image w-[2vw] h-[2vw]" alt="">
                               </div>
-                              <div class="text-[4.1vw] ml-[2vw] w-[60vw] line-clamp-1">
+                              <div 
+                                class="text-[4.1vw] ml-[2vw] w-[60vw] line-clamp-1"
+                                @click="mixin_player.replaceTracks(musiclist.map(({id})=>id),musiclist.map(({id})=>id)[index])"
+                              >
                                   <span class="px-[1vw] rounded-[3px] border-[1px] border-[red] font-[400] text-[3vw] text-[red] text-center leading-[6vw] scale-50"  v-if="item.originCoverType==1">
                                       vip
                                   </span>
                                   <span class="px-[0.5vw] rounded-[3px] border-[1px] border-[red] text-[3vw] text-[red] text-center leading-[6vw] scale-50 ml-[1vw] mr-[1vw]"  v-if="item.originCoverType==1">
                                       试听
                                   </span>
-                                  {{item.id}}
                                   {{item.name}}
                                   <span class="text-[3vw] text-[#BCBCBC]">-
                                     {{ item.ar[0].name}}

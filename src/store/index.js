@@ -15,7 +15,8 @@ const store = new Vuex.Store({
     menus: [],
     auth: {},
     isDark: false,
-    songId:[]
+    songId:[],
+    songcont:{}
   },
   mutations: {
     updateBlocks(state, res) {
@@ -30,7 +31,14 @@ const store = new Vuex.Store({
     //深色模式
     changeDark(state, payload) {
       state.isDark = payload
-    },
+    }, 
+ 
+    //取数据
+    set_songcont_data(state, data) {
+      state.songcont = data
+    }
+
+
 
     // deleteCachedData(state) {
     //   if (confirm('确定退出吗？')) {
@@ -57,6 +65,11 @@ const store = new Vuex.Store({
       if (err) return alert("请求错误，请稍后再试！");
       store.commit("updateAuth", res);
     },
+
+    //取数据
+    setMyData({ commit }, data) {
+      commit('set_songcont_data', data)
+    }
    
     // async requestoutsend(store,data) {
     //   const [err, res] = await loginCellphone(data);

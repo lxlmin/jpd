@@ -5,10 +5,6 @@
         <!-- 1s -->
         <nav class="bg-[#6186AB] w-[100vw] z-[999] t-0 pl-[3.9vw] pr-[3.4vw] h-[13.5vw] flex items-center justify-between fixed text-[white]">
             <div class="flex items-center">
-                 <!-- <van-button
-            @click="mixin_player.replaceTracks(arr)"
-            >播放全部</van-button
-            > -->
                 <router-link to="/home">
                     <Icon icon="ph:arrow-left"  class="text-[7vw] text-[#fff]"/>
                 </router-link>
@@ -118,10 +114,12 @@
         <div>
             <div v-for="(item,index) in tracksList" :key="item.id" class="flex items-center h-[14vw]">
                 <div class="w-[4vw] text-[#bfbfbf] text-[3vw] text-center mr-[3.52vw] font-medium">{{ index+1 }}</div>
-                <!-- <router-link :to="{ path: '/ind', query: {id:item.id} }"> -->
-                    <div class="font-medium text-[3.6vw] w-[64vw]">
+                <!-- <router-link :to="{ path: '/ind', query: {name:item.ar[0].name,songname:item.al.name,index:item.index} }"> -->
+                    <div class="font-medium text-[3.6vw] w-[64vw]" @click="mixin_player.replaceTracks(tracksList.map(({id})=>id),tracksList.map(({id})=>id)[index])">
                         <div class="text-[3.6vw] text-ellipsis overflow-hidden whitespace-nowrap w-[50vw] text-[#949797]">
-                            <span class="text-ellipsis text-[#000]">{{ item.name }}</span>
+                            <span class="text-ellipsis text-[#000]">
+                                {{ item.name }}
+                                </span>
                             <span class="text-[#949797]" v-if="item.alia.length>0">{{ item.alia[0] }}</span>
                         </div>
                         <div class="w-[64vw] text-ellipsis overflow-hidden whitespace-nowrap text-[#808080] text-[2.8vw] flex items-center">
@@ -134,11 +132,17 @@
                 <icon icon="mdi:play-box-outline" class="ml-[4.6vw] text-[6vw] text-[#B3B3B3] mt-[-2vw]"/>
                 <icon icon="mingcute:more-2-line" class="ml-[4.6vw] text-[5vw] text-[#B3B3B3] mt-[-2vw]" />
             </div>
+             <AudioPlayer :arr="arr"></AudioPlayer> 
+
+                
+            </div>
+           
         </div>
-    </div>
-        <AudioPlayer :arr="arr"></AudioPlayer>
         
-  </div>
+    </div>
+        
+        
+ 
 </template>
 
 <script>
@@ -178,7 +182,7 @@ export default {
       s: 5,
     });
     if (err) alert(err)
-    console.log(res);
+    // console.log(res);
     
 
 
@@ -202,7 +206,7 @@ export default {
     this.tracksList.forEach(item =>{
         this.arr.push(item.id)
     })
-    console.log(this.arr);
+    // console.log(this.arr);
     this.$store.state.songId = this.arr
   },
   methods:{
