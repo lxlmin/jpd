@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="pb-[12vw] relative">
+    <div class="relative">
        
         <!-- 1s -->
-        <nav class="bg-[#6186AB] w-[100vw] z-[999] t-0 pl-[3.9vw] pr-[3.4vw] h-[13.5vw] flex items-center justify-between fixed text-[white]">
+        <nav class="bg-[#486D8D] w-[100vw] z-[999] t-0 pl-[3.9vw] pr-[3.4vw] h-[13.5vw] flex items-center justify-between fixed text-[white]">
             <div class="flex items-center">
                 <router-link to="/home">
                     <Icon icon="ph:arrow-left"  class="text-[7vw] text-[#fff]"/>
@@ -15,19 +15,20 @@
                     <div class="text-[4.2vw] text-[#fff] ml-[4.7vw] relative" v-else>歌单</div>
                 </div>
                 <div class="px-[2vw] flex items-center justify-center h-[7vw] rounded-[20px] bg-[#dedede] bg-opacity-10 text-[#f8fefe] text-[3vw] ml-[5vw] font-semibold">
-                    <Icon icon="fluent:star-add-24-regular" class="text-[5vw] mr-[1vw]" />
-                    <span>收藏</span>
+                    <Icon icon="fluent:star-add-24-regular" class="text-[6vw] mr-[1vw]" />
+                    <span class="text-[2.2vw]">收藏</span>
                 </div>
             </div>
             <div class="flex items-center">
-                <Icon icon="prime:search" :style="{ fontSize: '36px',color:'#fff',marginRight:'10px'}"/>
-                <Icon icon="bytesize:ellipsis-vertical" :style="{ fontSize: '36px',color:'#fff' ,marginRight:'10px'}"/>
+                <Icon icon="prime:search" class="text-[7vw] mr-[1vw]"/>
+                <Icon icon="bytesize:ellipsis-vertical" class="text-[7vw] mr-[1vw]"/>
             </div>
         </nav>
         <!-- 1end -->
         <!-- 2s -->
-        <div class="w-[100%] h-[82vw] transition-all duration-20 0 relative bg-gradient-to-br from-[#486D8D] to-[#6186AB] pb-[5vw] pl-[3.9vw] pr-[3.4vw] pt-[13.5vw]">
+        <div class="w-[100%] transition-all duration-20 0 relative bg-[#486D8D] pb-[5vw] pl-[3.9vw] pr-[3.4vw] pt-[13.5vw]">
             <div class="fixed top-0 h-[13.5vw] w-[100vw] left-0 z-[998] opacity-0"></div>
+            <!-- 1 -->
             <div class="transition-all fade-in" v-show="flag==true"> 
                 <section class="h-[29vw] flex pt-[2.6vw] justify-between">
                     <div class="w-[24vw] h-[25vw] pt-[1vw] relative">
@@ -61,6 +62,7 @@
                     <Icon icon="ic:outline-greater-than" class="text-[3vw] ml-[0.6vw]" style="color: rgb(216, 228, 245);" />
                 </p>
             </div>
+            <!-- 2 -->
             <div class="fade-in overflow-hidden" v-show="flag==false">
                 <div class="h-[10vw] flex items-center text-[#fff] opacity-50 text-[3vw]">喜欢这个歌单的用户也听了</div>
                 <Scroll>
@@ -78,16 +80,16 @@
                 <Icon v-show="flag==true" icon="bytesize:chevron-bottom" class="text-[3vw] mt-[0.5vw]" />
                 <Icon v-show="flag==false" icon="bytesize:chevron-top" class="text-[3vw] mt-[0.5vw]" />
             </div>
-            <div class="flex items-center mt-[3.5vw]">
-                <div class="flex items-center justify-center h-[9.9vw] rounded-[200px] bg-opacity-20 bg-[#fff] font-[800] flex-1 text-[#f8fefe] text-[3vw]">
+            <div class="flex items-center mt-[3.5vw] justify-around mb-3">
+                <div class="flex w-[28vw] items-center justify-center h-[9.9vw] rounded-[200px] bg-opacity-20 bg-[#fff] font-[800] text-[#f8fefe] text-[3vw]">
                     <Icon icon="majesticons:share" class="text-[5vw] mr-[1.8vw]" />
                     {{ shareCount }}
                 </div>
-                <div class="flex items-center justify-center h-[9.9vw] rounded-[200px] bg-opacity-20 bg-[#fff] font-[800] flex-1 text-[#f8fefe] text-[3vw]">
+                <div class="flex w-[28vw] items-center justify-center h-[9.9vw] rounded-[200px] bg-opacity-20 bg-[#fff] font-[800]  text-[#f8fefe] text-[3vw]">
                     <Icon icon="humbleicons:chat" class="text-[5vw] mr-[1.8vw]" />
                     {{ commentCount }}
                 </div>
-                <div class="flex items-center justify-center h-[9.9vw] rounded-[200px] bg-[#ff2658] font-[800] flex-1 text-[#f8fefe] text-[3vw]">
+                <div class="flex w-[28vw] items-center justify-center h-[9.9vw] rounded-[200px] bg-[#ff2658] font-[800] text-[#f8fefe] text-[3vw]">
                     <Icon icon="fluent:star-add-28-filled" class="text-[5vw] mr-[1.8vw]" />
                     {{ subscribedCount }}
                 </div>

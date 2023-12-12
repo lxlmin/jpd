@@ -1,5 +1,5 @@
 <template>
-    <div class="relative h-[130vh] pb-[12vw] bg-[#e7cfc5]">
+    <div class="relative h-[130vh] pb-[12vw] bg-[#acacac]">
         <div class="absolute z-[3] flex flex-wrap h-[100%] pb-[7.5vw]">
             <!-- 头部 -->
             <div class="h-[15vw] w-[100vw] flex items-center px-[4vw] justify-between">
@@ -7,9 +7,13 @@
                     <Icon icon="ri:arrow-up-s-line" color="white" :rotate="2" :style="{fontSize:'30px'}"/>
                 </div>
                 <div class="text-center w-[60vw]">
-                    <p class="h-[5vw] text-[4vw] text-[#000] line-clamp-1">{{$route.query.songname}}</p>
+                    <p class="h-[5vw] text-[4vw] text-[#000] line-clamp-1">
+                        <!-- 谁家 -->
+                        {{mixin_player.currentTrackDetail?.name}}
+                    </p>
                     <p class="text-[2.8vw] text-[#666666] mt-[2vw] font-[400]">
-                        {{$route.query.name}}
+                        <!-- 池鱼 -->
+                        {{ mixin_player.currentTrackDetail?.ar?.map(({ name }) => name).join("/")}}
                         <span class="px-[1.6vw] py-[0.8vw] text-[#D8DBDB] text-[2vw] rounded-[8px] bg-[#84868B] ml-[1vw]">
                             关注
                         </span>
@@ -39,7 +43,7 @@
                             src="https://admirable-jalebi-ce44af.netlify.app/static/disc_light.png" alt=""
                             class="w-[80vw] h-[80vw] absolute top-0">
                     </div>
-                    <img data-v-8298fe8a="" src="https://p1.music.126.net/hzs4pVOxFKS5J64nY-rugA==/109951165958851914.jpg"
+                    <img data-v-8298fe8a="" :src="mixin_player.currentTrackDetail?.al?.picUrl" 
                         alt=""
                         id="imgs"
                         class="w-[50vw] h-[50vw] absolute top-[15vw] left-[15vw] rounded-[50%] border-[5px] border-[#000] rotateAnimation1">
@@ -82,7 +86,7 @@
             </div> 
             <Icon icon="fluent:previous-20-filled" color="white" :rotate="2" :style="{fontSize:'20px'}"/>     
             <!-- <Icon icon="fontisto:play-list" color="white" :style="{fontSize:'20px'}"/> -->
-            <div class="w-[12vw] bg-[#F9F9FA]">
+            <div class="w-[12vw]">
                 <van-cell  @click="showPopup">
                     <Icon icon="fontisto:play-list" class="text-[5vw] text-[#3b4152]"/>
                 </van-cell>
@@ -97,7 +101,7 @@
                   <div class="sticky top-0 z-50 left-0 bg-white py-[6vw]">
                       <h1 class="text-[4vw] font-extrabold">
                           当前播放
-                          <span class="text-[2vw] text-[#929293]">gfg</span>
+                          <span class="text-[2vw] text-[#929293]">{{songcont.length}}</span>
                       </h1>
                       <div class="flex justify-between mt-[6.6vw] items-center">
                           <div class="flex">
@@ -114,17 +118,14 @@
 
                     <div>
                      <!--  -->
-                      <!-- <div v-for="item in musiclist" :key="item.id" class="flex justify-between items-center h-[14vw]">
-                          <div class="flex items-center"  
-                          @click="music(item.name,item.ar[0].name,item.al.picUrl)"
-                          >
+                      <div v-for="item in songcont" :key="item.id" class="flex justify-between items-center h-[14vw]">
+                          <div class="flex items-center"  >
                               <div class="w-[4vw] text-[#bfbfbf] text-[3vw] text-center mr-[3.52vw] flex items-center justify-center">
                                   <img src="https://admirable-jalebi-ce44af.netlify.app/static/wave.gif" class="red-image w-[2vw] h-[2vw]" alt="">
                               </div>
                               <div 
-                                class="text-[4.1vw] ml-[2vw] w-[60vw] line-clamp-1 bg-amber-200"
-                                @click="mixin_player.replaceTracks(item.id)"
-                              >
+                                class="text-[4.1vw] ml-[2vw] w-[60vw] line-clamp-1"
+                                >
                                   <span class="px-[1vw] rounded-[3px] border-[1px] border-[red] font-[400] text-[3vw] text-[red] text-center leading-[6vw] scale-50"  v-if="item.originCoverType==1">
                                       vip
                                   </span>
@@ -140,7 +141,7 @@
                           <div>
                               <Icon icon="iwwa:delete" class="text-[5vw] text-[#B1B1B1]"/>
                           </div>
-                      </div> -->
+                      </div>
                       <!--  -->
                   </div>
               </div>
@@ -161,7 +162,7 @@
 
 <script>
 import { Icon } from '@iconify/vue2';
-import { mapActions } from 'vuex'
+import { mapState }  from 'vuex'
 import player from '@/components/AudioPlay/player';
 export default {
 	components: {
@@ -173,8 +174,6 @@ export default {
             arr:'',
             show: false,
             currentRate: 0,
-            songcont:''
-
         }
 
     },
@@ -196,12 +195,14 @@ export default {
         showPopup() {
           this.show = true;
         },
-        ...mapActions(['setMyData']),
-        saveData() {
-           this.setMyData(this.songcont)
-        }
     },
-};
+    computed: {
+    ...mapState(['songcont'])
+  },
+  created(){
+    console.log(this.songcont);
+  }
+}
 </script>
 
 <style scoped>

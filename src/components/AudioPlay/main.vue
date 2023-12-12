@@ -85,8 +85,7 @@ export default {
 
 
 <template>
-   <div>
-    <div class="px-[4.5vw] bg-[#F9F9FA] h-[14.5vw] border-b-[1px] border-[#F5F8FA] flex items-center w-[100vw] fixed  z-[10] bottom-[14vw]">
+    <div class="px-[4.5vw] bg-[#F9F9FA] h-[14.5vw] border-b-[1px] border-[#F5F8FA] flex items-center w-[100vw] fixed  z-[10] bottom-[0vw]">
       <div class="flex items-center">
           <div id="imgs" class="w-[10vw] h-[10vw] relative flex items-center justify-center rotateAnimation paused-animation">
               <img src="https://admirable-jalebi-ce44af.netlify.app/static/d7e4e3a244701ee85fecb5d4f6b5bd57.png" alt="" class="absolute top-0 left-0 z-[1]">
@@ -181,7 +180,6 @@ export default {
           </van-popup>
       </div>
     </div>
-  </div>
 </template>
 <style scoped>
 </style>
