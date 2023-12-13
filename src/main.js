@@ -9,6 +9,7 @@ import { Icon } from '@iconify/vue2';
 import Vant from 'vant';
 import '@/plugins/vant'
 import 'vant/lib/index.css';
+
 import * as Sentry from "@sentry/vue";
 
 
