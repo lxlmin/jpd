@@ -75,7 +75,7 @@
                 <div class="text-[#fff] text-[1.6vw] scale-[0.8] opacity-50">03:19</div>
             </div>
             <!-- 播放部分 -->
-            <div class="h-[12.3vw] flex w-[100vw] items-center justify-evenly">
+            <div class="h-[12.3vw] flex w-[100vw] items-center justify-evenly pl-3">
                 <Icon icon="cil:loop" color="white" :style="{fontSize:'20px'}"/>
                 <Icon icon="fluent:previous-20-filled" color="white" :style="{fontSize:'20px'}"/>
               

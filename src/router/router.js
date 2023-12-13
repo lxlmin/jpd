@@ -4,7 +4,11 @@ import home from '@/views/HomePage'
 const routes = [
     {
         path:'/',
-        redirect:'/ind'
+        redirect:'/re'
+    },
+    {
+        path:'/re',
+        component:()=>import('@/views/RemarKs')
     },
    
     {

@@ -119,3 +119,8 @@ export const getTrackDetail = (ids) => {
     console.log(ids);
     return co(request.get(`/song/detail?timestamp=${Date.now()}`, {params:{ids}}));
 }
+
+//歌曲评论
+export const getsongpl = (data) => {
+    return co(request.post(`/comment/music?timestamp=${ Date.now()}`, data))
+}
