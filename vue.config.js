@@ -1,4 +1,6 @@
 const { defineConfig } = require('@vue/cli-service')
+
+//精准定位错误
 // const { sentryWebpackPlugin } = require("@sentry/webpack-plugin");
 module.exports = defineConfig({
   transpileDependencies: true,
@@ -6,7 +8,7 @@ module.exports = defineConfig({
   devServer:{
     proxy:"http://localhost:3000"
   },
-  devtool: "source-map",
+  // devtool: "source-map",
   // plugins: [
   //   sentryWebpackPlugin({
   //     //组织名称
