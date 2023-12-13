@@ -8,8 +8,11 @@
                        <Icon icon="ri:arrow-up-s-line" color="white" :rotate="2" :style="{fontSize:'30px'}"/>
                     </div>
                 </router-link>
+                    
+                
                 
                 <div class="text-center w-[60vw]">
+                   <router-link to="/pre">
                     <p class="h-[5vw] text-[4vw] text-[#fff] line-clamp-1">
                         <!-- 谁家 -->
                         {{mixin_player.currentTrackDetail?.name}}
@@ -21,6 +24,7 @@
                             关注
                         </span>
                     </p>
+                    </router-link>
                 </div>
                 <Icon icon="solar:share-linear" color="white" :style="{fontSize:'30px'}"/>
             </div>
@@ -60,7 +64,9 @@
                 </div>
                 <Icon icon="icons8:down-round" color="white" :style="{fontSize:'20px'}"/>
                 <Icon icon="octicon:people-24" color="white"  :style="{fontSize:'20px'}"/>
-                <Icon icon="majesticons:chat-text-line" color="white" :style="{fontSize:'20px'}"/>
+                <router-link to="/re">
+                    <Icon icon="majesticons:chat-text-line" color="white" :style="{fontSize:'20px'}"/>
+                </router-link>
                 <Icon icon="mingcute:more-2-fill" color="white"  :style="{fontSize:'20px'}"/>
             </div>
             <!-- 进度条 -->
